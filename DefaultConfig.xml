@@ -1,0 +1,181 @@
+<?xml version="1.0" ?>
+<MigrationConfigurations>
+	<AppSettings>
+		<username>username</username>
+		<password>pass</password>
+		<protocol>ncacn_http</protocol>
+		<port>4466</port>
+		<specificMFilesUser>true</specificMFilesUser>
+		<server>MFiles server</server>
+		<vaultGUID>{AFF05678-E91C-1234-82F5-B03CB23FB431}</vaultGUID>
+		<StartFolderLocation>D:\D Documents\TestMigrationUtility\regression</StartFolderLocation>
+		<LogFilePath>D:\D Documents\WatchFolderForObjectImporter\Logs</LogFilePath>
+		<ExcludedExtensions>.zip|.docx|.csv</ExcludedExtensions>		
+	</AppSettings>
+	<concactenatedProperties>
+		<Property>
+			<idOrAlias>Property.Notes</idOrAlias>
+			<value>Text:Add this text before the Folder structure|Property:100|Property:Property.Well|FileInfo:{filename}|FileInfo:{modified}|FileInfo:{path}</value>
+			<delimiter>_</delimiter>
+		</Property>
+	</concactenatedProperties>
+	
+	<defaultPropertiesSettings>
+		<Property>
+			<idOrAlias>100</idOrAlias>
+			<value>Digital Well File</value>
+		</Property>
+		<Property>
+			<idOrAlias>0</idOrAlias>
+			<value>{filename}</value>
+		</Property>
+		<Property>
+			<idOrAlias>Property.DocumentDate</idOrAlias>
+			<value>{modified}</value>
+		</Property>
+	</defaultPropertiesSettings>
+	
+	<FolderLevelSettings>
+		<FolderSetting>
+			<folderLevel>1</folderLevel>
+			<idOrAlias>Property.Well</idOrAlias>
+			<hasConditions>false</hasConditions>
+			<exactMatch>true</exactMatch>
+			<isRequired>true</isRequired>
+		</FolderSetting>
+		
+		<FolderSetting>
+			<folderLevel>2</folderLevel>
+			<idOrAlias>Property.VL.Category-DWF</idOrAlias>
+			<isRequired>true</isRequired> 
+			<hasConditions>true</hasConditions>
+			<exactMatch>false</exactMatch> <!-- if this is set to false it will use contains instead of exact match -->
+			<ValueConditions>
+				<Condition>
+					<ifcontainsValue>AFE</ifcontainsValue>
+					<valueToSet>General</valueToSet>
+				</Condition>
+				<Condition>
+					<ifcontainsValue>Completions|Production|Workover|Report|Video</ifcontainsValue>
+					<valueToSet>Completion</valueToSet>
+				</Condition>
+				<Condition>
+					<ifcontainsValue>Drilling|Plat</ifcontainsValue>
+					<valueToSet>Drilling</valueToSet>
+				</Condition>
+				<Condition>
+					<ifcontainsValue>GCP|General Pad Info|Regulatory|Statement of Requirements</ifcontainsValue>
+					<valueToSet>Government</valueToSet>
+				</Condition>
+				<Condition>
+					<ifcontainsValue>Geology|Logs</ifcontainsValue>
+					<valueToSet>Logs, Analysis &amp; Geology</valueToSet>
+				</Condition>
+			</ValueConditions>
+		</FolderSetting>		
+    </FolderLevelSettings>
+
+	<ConditionalPropertySettings>
+		<ConditionalProperty>
+			<ProcessingOrder>1</ProcessingOrder>
+			<parentProperty>Property.VL.Category-DWF</parentProperty>			
+			<ParentChildConditions>
+				<ConditionalSettings>
+					<hasValue>General</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>AFEs / AFE Docs / Reserves &amp; Economics</valueToSet>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Completion</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet></valueToSet>
+					<AditionalCriteria>
+						<Criteria>
+							<FolderCriterias>
+								<FolderCriteria>
+									<folderLevel>2</folderLevel>
+									<ifcontainsValue>Report</ifcontainsValue>
+								</FolderCriteria>
+							</FolderCriterias>
+							<valueToSet>Completion, Recompletion and Other Well Service</valueToSet>
+						</Criteria>
+						<Criteria>
+							<FolderCriterias>
+								<FolderCriteria>
+									<folderLevel>2</folderLevel>
+									<ifcontainsValue>Video</ifcontainsValue>
+								</FolderCriteria>
+							</FolderCriterias>
+							<valueToSet>Equipment and Materials</valueToSet>
+						</Criteria>
+					</AditionalCriteria>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Drilling</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet></valueToSet>
+					<AditionalCriteria>
+						<Criteria>
+							<FolderCriterias>
+								<FolderCriteria>
+									<folderLevel>2</folderLevel>
+									<ifcontainsValue>Drilling</ifcontainsValue>
+								</FolderCriteria>
+							</FolderCriterias>
+							<valueToSet>Drilling Reports/Documents</valueToSet>
+						</Criteria>
+						<Criteria>
+							<FolderCriterias>
+								<FolderCriteria>
+									<folderLevel>2</folderLevel>
+									<ifcontainsValue>Plat</ifcontainsValue>
+								</FolderCriteria>
+							</FolderCriterias>
+							<valueToSet>Well Planning/Pre-spud</valueToSet>
+						</Criteria>
+					</AditionalCriteria>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Government</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>Other Government Forms</valueToSet>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Government</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>Other Government Forms</valueToSet>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Logs, Analysis &amp; Geology</hasValue>
+					<propertyToSet>Property.VL.SubCategory-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>Wireline logs or Analysis</valueToSet>
+				</ConditionalSettings>
+			</ParentChildConditions>
+		</ConditionalProperty>		
+		<ConditionalProperty>
+			<ProcessingOrder>2</ProcessingOrder>
+			<parentProperty>Property.VL.SubCategory-DWF</parentProperty>
+			<ParentChildConditions>
+				<ConditionalSettings>
+					<hasValue>Completion, Recompletion and Other Well Service</hasValue>
+					<propertyToSet>Property.VL.Type-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>Service Reports From Other Completion or Workover Service Companies</valueToSet>
+				</ConditionalSettings>
+				<ConditionalSettings>
+					<hasValue>Equipment and Materials</hasValue>
+					<propertyToSet>Property.VL.Type-DWF</propertyToSet>
+					<ParentPropertyisVLOwner>true</ParentPropertyisVLOwner>
+					<valueToSet>Wellhead Specifications - Artificial Lift</valueToSet>
+				</ConditionalSettings>
+			</ParentChildConditions>
+		</ConditionalProperty>		
+	</ConditionalPropertySettings>		
+</MigrationConfigurations>
+

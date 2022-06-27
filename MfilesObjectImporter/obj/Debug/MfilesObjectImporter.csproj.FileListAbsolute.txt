@@ -1,0 +1,7 @@
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\bin\Debug\MfilesObjectImporter.exe.config
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\bin\Debug\MfilesObjectImporter.exe
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\bin\Debug\MfilesObjectImporter.pdb
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\obj\Debug\MfilesObjectImporter.csprojAssemblyReference.cache
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\obj\Debug\MfilesObjectImporter.csproj.CoreCompileInputs.cache
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\obj\Debug\MfilesObjectImporter.exe
+D:\Users\Amibr\source\repos\MfilesObjectImporter\MfilesObjectImporter\obj\Debug\MfilesObjectImporter.pdb
